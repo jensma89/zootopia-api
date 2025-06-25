@@ -5,8 +5,11 @@ get the data from the animals api
 """
 import requests
 
-def get_animals_data():
-    url = "https://api.api-ninjas.com/v1/animals?name=seal"
+def get_animals_data(search_input):
+    """Fetch data from the animals api.
+    Use the search input from user as name"""
+
+    url = f"https://api.api-ninjas.com/v1/animals?name={search_input}"
     headers = {
         'X-Api-Key': 'eMuvHY30wqN+Soz7l0HJHA==PJ1x1be6vxNPtgNq'
     }
@@ -22,4 +25,5 @@ def get_animals_data():
 
 
 if __name__ == "__main__":
-    get_animals_data()
+    user_input = input("Search for an animal: ").strip().lower()
+    get_animals_data(user_input)
