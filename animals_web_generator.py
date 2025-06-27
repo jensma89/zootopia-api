@@ -12,9 +12,13 @@ def get_html_data(file_path):
         return ""
 
 
-def convert_animals_data_to_str(animals_data):
+def convert_animals_data_to_str(animals_data, search_input):
     """Convert the animals data to a string and return it,
      only showing existing fields."""
+    if not animals_data:
+        return (f'<h2 style="text-align: center;">'
+                f'The animal "{search_input}" '
+                f'doesn\'t exist!</h2>')
     animal_output = ""
     for animal in animals_data:
         animal_output += '<li class="cards__item">'
@@ -57,10 +61,9 @@ def main():
     and call the functions."""
     search_input = input("Enter a animal: ").lower().strip()
     animals_data = fetch_animals_data(search_input)
-    animals_output = convert_animals_data_to_str(animals_data)
+    animals_output = convert_animals_data_to_str(animals_data, search_input)
     write_new_animals_html("animals_template.html",
                            "animals.html", animals_output)
-
 
 if __name__ == "__main__":
     main()
