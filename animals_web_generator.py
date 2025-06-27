@@ -53,8 +53,10 @@ def write_new_animals_html(template_path, output_path, animals_info):
 
 
 def main():
-    """Call the functions."""
-    animals_data = fetch_animals_data("fox")
+    """Ask the user to search an animal
+    and call the functions."""
+    search_input = input("Enter a animal: ").lower().strip()
+    animals_data = fetch_animals_data(search_input)
     animals_output = convert_animals_data_to_str(animals_data)
     write_new_animals_html("animals_template.html",
                            "animals.html", animals_output)
