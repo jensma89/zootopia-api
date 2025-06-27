@@ -1,11 +1,11 @@
 """
 fetch_animals.py
 
-get the data from the animals api
+Fetch data from the animals api
 """
 import requests
 
-def get_animals_data(search_input):
+def fetch_animals_data(search_input):
     """Fetch data from the animals api.
     Use the search input from user as name"""
 
@@ -17,13 +17,7 @@ def get_animals_data(search_input):
     response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
-        data = response.json()
-        for animal in data:
-            print(f"{animal['name']} - {animal['characteristics']['diet']}")
+        return response.json()
     else:
         print(f"Error: {response.status_code}: {response.text}")
-
-
-if __name__ == "__main__":
-    user_input = input("Search for an animal: ").strip().lower()
-    get_animals_data(user_input)
+        return []
