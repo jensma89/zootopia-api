@@ -1,5 +1,4 @@
 from fetch_animals import fetch_animals_data
-import json as js
 
 
 def get_html_data(file_path):
