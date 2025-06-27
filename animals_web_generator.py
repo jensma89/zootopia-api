@@ -1,5 +1,5 @@
 from fetch_animals import fetch_animals_data
-
+import os
 
 def get_html_data(file_path):
     """Load the data from HTML file."""
@@ -45,11 +45,17 @@ def convert_animals_data_to_str(animals_data, search_input):
     return animal_output
 
 
-def write_new_animals_html(template_path, output_path, animals_info):
-    """Write the animals data to a ne html file."""
+def write_new_animals_html(template_path, output_filename, animals_info):
+    """Write the animals data to a new HTML file in the 'static' folder."""
+
+    # Check is statics folder already exist
+    os.makedirs("static", exist_ok=True)
+
     html_template = get_html_data(template_path)
     html_output = html_template.replace("__REPLACE_ANIMALS_INFO__",
                                         animals_info)
+
+    output_path = os.path.join("static", output_filename)
 
     with open(output_path, "w") as fileobject:
         fileobject.write(html_output)
